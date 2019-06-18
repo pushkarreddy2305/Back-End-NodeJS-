@@ -1,0 +1,19 @@
+{
+    "name": "employers-holding-api",
+    "version": "1.0.0",
+    "description": "Employer's Holding Rest Server",
+    "main": "server.js",
+    "engines": {
+        "node": "8.9.4",
+        "npm": "5.6.0"
+    },
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "bitbucket": "^1.15.0",
+        "body-parser": "1.18.3",
+        "dotenv": "^6.1.0",
+        "express": "^4.16.4"
+    }
+}
