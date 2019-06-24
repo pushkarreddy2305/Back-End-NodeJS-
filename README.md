@@ -32,6 +32,6 @@ Employer's Holding Rest API
 
 # End Points
 ## Users
-    * `/user` will return all users
-    * `/user/:name` will return data for user based on username
+* `/user` will return all users
+* `/user/:name` will return data for user based on username
 
