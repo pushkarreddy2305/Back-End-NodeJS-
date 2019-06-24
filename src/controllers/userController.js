@@ -1,4 +1,6 @@
 'use strict';
+const {db,userModel} = require("../db");
+const query = require("mongoose").query;
 
 function getTest(username) {
     try {
@@ -12,6 +14,17 @@ function getTest(username) {
     }
 }
 
+function find(search){
+    var regex = new RegExp(search,'i');
+    return userModel.find({username:regex}).exec();
+}
+
+function findAll(){
+    return userModel.find().exec();
+}
+
 module.exports = {
-    getTest
+    getTest,
+    find,
+    findAll
 };
