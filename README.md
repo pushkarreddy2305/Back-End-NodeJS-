@@ -33,6 +33,11 @@ Employer's Holding Rest API
 
 # End Points
 ## Users
-* `/user` will return all users
-* `/user/:name` will return data for user based on username
+* GET `/user` will return all users
+* GET `/user/:name` will return data for user based on username
+* POST `/user` send with groups, roles, and username. groups and roles are optional for now.
 
+## Projects
+* GET `/project` will return all projects
+* GET `/project/:search` will return projects with description or name matching :search
+* POST `/project` send with name and description.

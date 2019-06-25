@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 var userSchema = new mongoose.Schema({
     username: String,
     roles:    [String],
+    groups:   [String],
 })
 
 userModel = mongoose.model('user',userSchema);

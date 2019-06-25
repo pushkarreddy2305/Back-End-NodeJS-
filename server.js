@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 const {
     userRouter,
+    projectRouter,
 } = require('./src/routes');
 
 const port = process.env.PORT || 8080;
@@ -48,6 +49,7 @@ app.all('*', async function (req, res, next) {
 });
 
 app.use('/user', userRouter);
+app.use('/project', projectRouter);
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);

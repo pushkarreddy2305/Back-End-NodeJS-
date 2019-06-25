@@ -2,6 +2,15 @@
 const {db,userModel} = require("../db");
 const query = require("mongoose").query;
 
+function create(username,groups){
+    var newUser = new userModel({
+        username,
+        groups,
+    });
+    newUser.save();
+    return newUser;
+}
+
 function getTest(username) {
     try {
         return {
@@ -24,6 +33,7 @@ function findAll(){
 }
 
 module.exports = {
+    create,
     getTest,
     find,
     findAll

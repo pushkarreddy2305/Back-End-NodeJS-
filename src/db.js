@@ -1,5 +1,6 @@
 const mongoose  = require("mongoose");
 const userModel = require("./models/user");
+const projectModel = require("./models/project");
 
 const url       = "mongodb://localhost:27017"
 const dbname    = "EmployerHolding"
@@ -15,6 +16,7 @@ db.once('open',function(){
 
 module.exports = {
     db,
-    userModel
+    userModel,
+    projectModel
 }
 
