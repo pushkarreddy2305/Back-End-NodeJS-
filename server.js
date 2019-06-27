@@ -8,6 +8,10 @@ const {
     projectRouter,
 } = require('./src/routes');
 
+const {connect} = require('./src/db');
+
+connect();
+
 const port = process.env.PORT || 8080;
 
 const app = express();

@@ -1,5 +1,5 @@
 'use strict';
-const {db,projectModel} = require("../../db");
+const {projectModel} = require("../../models");
 
 function create(name,description){
     var newProj = new projectModel({
@@ -15,7 +15,6 @@ function findAll(){
 }
 
 function find(search){
-    console.log(search)
     var regex = new RegExp(search,'i');
     return projectModel.find({
         $or:[

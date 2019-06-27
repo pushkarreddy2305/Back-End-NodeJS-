@@ -1,5 +1,5 @@
 'use strict';
-const {db,userModel} = require("../db");
+const {userModel} = require("../models");
 const query = require("mongoose").query;
 
 function create(username,groups){
