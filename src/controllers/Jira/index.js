@@ -12,9 +12,11 @@ const JiraClient = require("jira-connector")
 //console.log("jira",)
 
 const clientOptions = {
-  baseUrl: 'http://localhost:9090/',
-  protocol: 'http',
-  strictSSL: true,
+  baseUrl: 'http://localhost:8090/rest/auth/1/session',
+ // host: 'localhost',
+ // port: "8090",
+ // protocol: 'http',
+  strictSSL: false,
   
   headers: {},
   options: {
@@ -22,19 +24,22 @@ const clientOptions = {
   }
 }
 
-const jira = new JIRA(clientOptions)
+const jira1 = new JIRA(clientOptions)
 console.log("jira",)
 
-jira.authenticate({
+jira1.authenticate({
   type: 'basic',
   username: 'sharath',
   password: 'Wilmington@1995'
 })
-console.log("AUTHED:" ,this.auth)
-new JiraClient(
+
+console.log("AUTHED:",jira1 ,this.auth)
+
+var jira = new JiraClient(
   {
-    host: "http://localhost:8090",
-    //port : "8090",
+    host: "localhost",
+    port : "8090",
+    protocol: "http",
     basic_auth:{
     	username: 'sharath',
     	password: 'Wilmington@1995'
@@ -64,19 +69,23 @@ new JiraClient(
     console.log("oauth",oauth);
     console.log("error",error);
   }*/
-).auth.currentUser()
+)
+/*.auth.currentUser()
 .then(x=>console.log(x))
 .catch(err=>console.log("Error",err));
-
+*/
 
 function createProject(){
-// return jira.project.createProject(
- return{
+/*return jira.project.createProject(
+ {
 	assigneeType:"UNASSIGNED",
 	description:"test description",
 	key:"SharathTestKey",
 	name:"This is a test project",
-}//)
+})*/
+console.log(jira)
+jira.project.getAllProjects({username: "sharath"}).then(x=> console.log(x))
+.catch(err=>console.log("error: ",err))
 return "createProject"
 }
 
