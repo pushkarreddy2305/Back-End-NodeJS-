@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const {
     userRouter,
     projectRouter,
+    jiraRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -54,6 +55,7 @@ app.all('*', async function (req, res, next) {
 
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
+app.use('/jira',jiraRouter);
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);
