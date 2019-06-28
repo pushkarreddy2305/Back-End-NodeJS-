@@ -28,4 +28,19 @@ router.post('/',
     }
 )
 
+router.put('/',
+    (req,res) => {
+        let {id,name,description} = req.body;
+        controller.edit(id,name,description)
+        .then(
+              (project => res.json({success:true,project}))
+          ).catch(
+              err =>{
+                  console.log("Edit Error:",err)
+                  res.json({success:false});
+              }
+          );
+    }
+)
+
 module.exports = router;
