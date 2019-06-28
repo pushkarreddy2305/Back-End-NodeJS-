@@ -41,3 +41,4 @@ Employer's Holding Rest API
 * GET `/project` will return all projects
 * GET `/project/:search` will return projects with description or name matching :search
 * POST `/project` send with name and description.
+* PUT `/project` send with id(the document id, in mongo \_id), name(this is the new name), description(this is the new description)
