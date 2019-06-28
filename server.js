@@ -7,6 +7,7 @@ const session = require('express-session');
 const {
     userRouter,
     projectRouter,
+    authRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -30,14 +31,17 @@ app.use(function (req, res, next) {
 
 app.get('/', async (req, res) => res.sendStatus(200));
 
-app.all('*', async function (req, res, next) {
+app.all(/[^\/auth]/, async function (req, res, next) {
 
+    if(req.session.loggedIn){
 
+    }
     next();
 });
 
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
+app.use('/auth',authRouter);
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);

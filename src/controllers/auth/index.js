@@ -1,13 +1,13 @@
-const {userModel} = require("../models");
+const {userModel} = require("../../models");
 
-function authenticateUser(username,password){
-    var user = userModel.find({
-        username,
+function authenticate(username,password){
+    re = new RegExp(username,'i');
+    return userModel.find({
+        username:re,
         password,
-    });
-    if(user){
-        return user;
-    }
-    return null;
+    })
 }
 
+module.exports = {
+    authenticate,
+}
