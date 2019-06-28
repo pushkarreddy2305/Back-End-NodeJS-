@@ -1,7 +1,8 @@
+
 const {db} = require("../../db");
 const JIRA = require('@atlassian/jira')
 console.log("JIRA",)
-//const JiraClient = require("jira-connector")
+const JiraClient = require("jira-connector")
 
 /*const jira = new JiraClient({
     host: 'http://localhost:8090/',
@@ -11,14 +12,18 @@ console.log("JIRA",)
 //console.log("jira",)
 
 const clientOptions = {
-  baseUrl: ' http://localhost:8090/',
+  baseUrl: 'http://localhost:9090/',
+  protocol: 'http',
+  strictSSL: true,
+  
   headers: {},
   options: {
-    timeout: 10
+    timeout: 100
   }
 }
 
 const jira = new JIRA(clientOptions)
+console.log("jira",)
 
 jira.authenticate({
   type: 'basic',
@@ -26,10 +31,16 @@ jira.authenticate({
   password: 'Wilmington@1995'
 })
 console.log("AUTHED:" ,this.auth)
-/*JiraClient.oauth_util.getAuthorizeURL(
+new JiraClient(
   {
-    host: "http://localhost:8090/",
-    oauth: {
+    host: "http://localhost:8090",
+    //port : "8090",
+    basic_auth:{
+    	username: 'sharath',
+    	password: 'Wilmington@1995'
+    }
+    }
+   /* oauth: {
       consumer_key: "123456",
       private_key:
         "-----BEGIN RSA PRIVATE KEY-----\n" +
@@ -49,13 +60,14 @@ console.log("AUTHED:" ,this.auth)
 		        "-----END RSA PRIVATE KEY-----"
     }
   },
-*/ 
- /*function(error, oauth) {
+  function(error, oauth) {
     console.log("oauth",oauth);
     console.log("error",error);
-  }
-);
-*/
+  }*/
+).auth.currentUser()
+.then(x=>console.log(x))
+.catch(err=>console.log("Error",err));
+
 
 function createProject(){
 // return jira.project.createProject(
