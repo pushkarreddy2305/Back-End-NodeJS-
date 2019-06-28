@@ -5,8 +5,8 @@ const jiraController = require('../../controllers/Jira');
 router.post("/Project",(req,res) => {
 	res.send(
 		jiraController.createProject()
-		.then(x => x)
-		.catch( err => err)
+		/*.then(x => x)
+		.catch( err => err)*/
 		)
 	console.log("createProject")
 })
