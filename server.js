@@ -8,6 +8,7 @@ const {
     userRouter,
     projectRouter,
     authRouter,
+    jiraRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -47,6 +48,7 @@ app.all(/[^\/auth]/, async function (req, res, next) {
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
 app.use('/auth',authRouter);
+app.use('/auth',jiraRouter);
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);
