@@ -3,7 +3,7 @@ const agent = require( 'superagent');
 class JiraConnectorService {
     constructor(){
 
-        this.jiraApiURl="http://localhost:8090/rest/api/2"
+        this.jiraApiURl="http://10.229.195.249:8090/rest/api/2"
     }
 
 
