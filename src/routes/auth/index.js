@@ -7,16 +7,23 @@ router.post('/',
             req.body.username,
             req.body.password
         ).then(user =>{
-            if(user[0].username != undefined ){
+            if(user.username != undefined ){
                 req.session.loggedIn = true;
-                res.json(true)
+                req.session.user = user;
+                res.json({success:true})
             }else{
-                res.json(false);
+                res.json({success:false});
             }
         }).catch((err) => {
-            res.send("something went wrong");
+            res.json({success:false});
         })
     }
 );
+
+router.get('/',
+    (req,res) => {
+        res.json(controller.currentUser(req.session))
+    }
+)
 
 module.exports = router;
