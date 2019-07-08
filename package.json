@@ -9,16 +9,18 @@
     },
     "scripts": {
         "start": "node server.js",
-        "dev": "nodemon server.js "
+        "dev": "nodemon server.js"
     },
     "dependencies": {
         "bitbucket": "^1.15.0",
         "body-parser": "1.18.3",
+        "confluence-api": "^1.4.0",
         "dotenv": "^6.1.0",
         "express": "^4.16.4",
         "express-session": "^1.16.2",
         "mongodb": "^3.2.7",
         "mongoose": "^5.6.0",
+        "request": "^2.88.0",
         "superagent": "^5.1.0",
         "webpack": "^4.35.0",
         "webpack-cli": "^3.3.5"
@@ -26,6 +28,8 @@
     "devDependencies": {
         "@babel/core": "^7.4.0",
         "@babel/plugin-proposal-class-properties": "^7.4.4",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/plugin-syntax-import-meta": "^7.2.0",
         "@babel/preset-env": "^7.4.2",
         "@babel/preset-stage-3": "^7.0.0",
         "babel-loader": "^8.0.5",
