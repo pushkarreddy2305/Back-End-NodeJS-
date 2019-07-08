@@ -4,13 +4,12 @@ const controller = require('../../controllers/auth');
 /* remove this for production */
 router.post('/',
     (req,res) => {
-        //        console.log(
-        //            req.query.username,req.params.username,req.body.username,
-        //            req.query.password,req.params.password,req.body.password
-        //        );
+        let username = req.params.username || req.body.username;
+        let password = req.params.password || req.body.password;
+
         controller.authenticate(
-            req.query.username,
-            req.query.password
+            username,
+            password
         ).then(user =>{
             if(user.username != undefined ){
                 req.session.loggedIn = true;
