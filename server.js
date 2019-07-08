@@ -9,6 +9,7 @@ const {
     projectRouter,
     authRouter,
     jiraRouter,
+    confluenceRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -49,6 +50,7 @@ app.use('/user', userRouter);
 app.use('/project', projectRouter);
 app.use('/auth',authRouter);
 app.use('/jira',jiraRouter);
+app.use('/confluence',confluenceRouter);
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);

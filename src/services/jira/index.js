@@ -1,9 +1,10 @@
 const agent = require( 'superagent');
+const config = require('../../config.js');
 
 class JiraConnectorService {
     constructor(){
 
-        this.jiraApiURl="http://10.229.195.249:8090/rest/api/2"
+        this.jiraApiURl=config.jiraURL;
     }
 
 
