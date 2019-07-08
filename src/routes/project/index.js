@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  console.log("id", req.params.id);
+  //console.log("id", req.params.id);
   controller.findById(req.params.id).then(project => {
     res.send(project);
   });
@@ -21,7 +21,7 @@ router.get("/:search", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   res.send(controller.create(req.body.name, req.body.description));
 });
 
@@ -31,7 +31,7 @@ router.put("/", (req, res) => {
     .edit(id, name, description)
     .then(project => res.json({ success: true, project }))
     .catch(err => {
-      console.log("Edit Error:", err);
+      //console.log("Edit Error:", err);
       res.json({ success: false });
     });
 });

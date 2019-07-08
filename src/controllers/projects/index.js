@@ -37,7 +37,7 @@ async function edit(id, name, description) {
       return proj.save();
     })
     .catch(err => {
-      console.log("edit error:", err);
+        //console.log("edit error:", err);
       reject(err);
     });
 }
