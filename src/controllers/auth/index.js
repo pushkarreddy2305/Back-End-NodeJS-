@@ -9,7 +9,7 @@ function authenticate(username,password){
 }
 
 function currentUser(session){
-    console.log(session);
+    //    console.log(session);
     if(session.hasOwnProperty('user') && session.user != undefined){
         return session.user;
     }
