@@ -35,7 +35,7 @@ exports.deletePage = (req, res, next) => {
       return res.json({ errors: err });
     }
 
-    let { id } = data.results[0];
+    let { id } = data.results[0] || null;
 
     var pageOptions = {
       method: "DELETE",

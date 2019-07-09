@@ -32,7 +32,7 @@ exports.contentByPageTitle = (req, res, next) => {
 };
 
 exports.getNewSpace = (req, res, next) => {
-  console.log("Hit");
+    //  console.log("Hit");
   const { space } = req.params;
 
   confluence.getSpace(space, (err, data) => {
