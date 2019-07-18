@@ -1,16 +1,10 @@
 const mongoose = require("mongoose");
 
 var userSchema = new mongoose.Schema({
-    username:{
-        type: String,
-        required: true,
-    },
-    password:{
+    ldapId:{
         type:String,
         required:true,
-    },
-    roles:    [String],
-    groups:   [String],
+    }
 })
 
 userModel = mongoose.model('user',userSchema);
