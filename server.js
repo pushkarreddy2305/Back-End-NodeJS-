@@ -7,9 +7,13 @@ const session = require('express-session');
 const {
     userRouter,
     projectRouter,
+<<<<<<< HEAD
     authRouter,
     jiraRouter,
     confluenceRouter,
+=======
+    jiraRouter,
+>>>>>>> fd84c65e5b2efc4da6b9f2927379b4b366cd16a6
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -48,9 +52,13 @@ app.all(/[^\/auth]/, async function (req, res, next) {
 
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
+<<<<<<< HEAD
 app.use('/auth',authRouter);
 app.use('/jira',jiraRouter);
 app.use('/confluence',confluenceRouter);
+=======
+app.use('/jira',jiraRouter);
+>>>>>>> fd84c65e5b2efc4da6b9f2927379b4b366cd16a6
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);
