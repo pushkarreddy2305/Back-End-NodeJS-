@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 var projectSchema = new mongoose.Schema({
+    id: Number,
     name: {
         type:String,
         required:true,
@@ -11,19 +12,23 @@ var projectSchema = new mongoose.Schema({
     },
     jiraId:{
         type:String,
-        required:true,
+        default:"",
     },
     confluenceId:{
         type:String,
-        required:true,
+        default:"",
     },
     bitbucketId:{
         type:String,
-        required:true,
+        default:"",
+    },
+    jenkinsId:{
+        type:String,
+        default:"",
     }
 })
 
-projectModel = mongoose.model('project',projectSchema);
+project = mongoose.model('project',projectSchema);
 
-module.exports = projectModel
+module.exports = project
 

@@ -1,8 +1,8 @@
 "use strict";
-const { projectModel } = require("../../models");
+const { project } = require("../../models");
 
 function create(name, description) {
-  var newProj = new projectModel({
+  var newProj = new project({
     name,
     description
   });
@@ -10,25 +10,25 @@ function create(name, description) {
   return newProj;
 }
 
-function findAll() {
-  return projectModel.find().exec();
+function index() {
+  return project.find().exec();
 }
 
-function find(search) {
+function search(search) {
   var regex = new RegExp(search, "i");
-  return projectModel
+  return project
     .find({
       $or: [{ description: regex }, { name: regex }]
     })
     .exec();
 }
 
-function findById(id) {
-  return projectModel.findOne({ _id: id }).exec();
+function read(id) {
+  return project.findOne({ _id: id }).exec();
 }
 
-async function edit(id, name, description) {
-  return await projectModel
+async function update(id, name, description) {
+  return await project
     .findOne({ _id: id })
     .exec()
     .then(proj => {
@@ -42,10 +42,22 @@ async function edit(id, name, description) {
     });
 }
 
+async function del(id){
+    return await project
+        .deleteOne({_id:id})
+        .then(result=>{
+            if(result.deletedCount > 0){
+                return(true);
+            }else{
+                return Promise.reject(new Error("id not found"))
+            }
+        });
+}
+
 module.exports = {
-  create,
-  find,
-  findAll,
-  edit,
-  findById
+    index,
+    create,
+    read,
+    update,
+    del,
 };
