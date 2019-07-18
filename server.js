@@ -7,13 +7,9 @@ const session = require('express-session');
 const {
     userRouter,
     projectRouter,
-<<<<<<< HEAD
     authRouter,
     jiraRouter,
     confluenceRouter,
-=======
-    jiraRouter,
->>>>>>> fd84c65e5b2efc4da6b9f2927379b4b366cd16a6
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -32,6 +28,7 @@ app.use(session({
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
     next();
 });
 
@@ -40,6 +37,7 @@ app.use( (req,res,next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
     next()
 })
 app.all(/[^\/auth]/, async function (req, res, next) {
@@ -52,13 +50,9 @@ app.all(/[^\/auth]/, async function (req, res, next) {
 
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
-<<<<<<< HEAD
 app.use('/auth',authRouter);
 app.use('/jira',jiraRouter);
 app.use('/confluence',confluenceRouter);
-=======
-app.use('/jira',jiraRouter);
->>>>>>> fd84c65e5b2efc4da6b9f2927379b4b366cd16a6
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);

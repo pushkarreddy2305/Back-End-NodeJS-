@@ -12,7 +12,6 @@
         "dev": "nodemon server.js"
     },
     "dependencies": {
-        "@atlassian/jira": "^0.1.0",
         "bitbucket": "^1.15.0",
         "body-parser": "1.18.3",
         "confluence-api": "^1.4.0",
@@ -34,7 +33,6 @@
         "@babel/preset-env": "^7.4.2",
         "@babel/preset-stage-3": "^7.0.0",
         "babel-loader": "^8.0.5",
-        "jira-connector": "^2.15.2",
         "nodemon": "^1.19.1",
         "webpack": "^4.29.6",
         "webpack-cli": "^3.3.0",
