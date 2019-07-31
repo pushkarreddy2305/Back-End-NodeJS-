@@ -11,7 +11,7 @@ const config = {
 
 const confluence = new Confluence(config);
 
-exports.createNewSpace = (req, res, next) => {
+exports.createNewSpace = async (key,name,description) => {
   // request body must contain the following
   //------------------------------------------
   //{
@@ -36,17 +36,21 @@ exports.createNewSpace = (req, res, next) => {
       Accept: "application/json",
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(req.body)
+    body: JSON.stringify({key,name,description})
   };
+    console.log(options);
 
-  request(options, function(error, response, body) {
-    if (error) throw new Error(error);
+  let result = await request(options, function(error, response, body) {
+    if (error) console.log("error in create new space:" ,err);
 
-    return res.send(body);
+      console.log(body);
+
+    Promise.resolve( body);
   });
+    return result
 };
 
-exports.createNewPage = (req, res, next) => {
+exports.createNewPage = async (space,title,pageContent) => {
   // request body must contain the following
   //------------------------------------------
 
@@ -56,8 +60,7 @@ exports.createNewPage = (req, res, next) => {
   //   "pageContent": "<p>This is a new page with awesome content! Updated</p>"
   //  }
 
-  const { space, title, pageContent } = req.body;
-  confluence.postContent(space, title, pageContent, null, (err, data) => {
-    return res.send(data);
+  return await confluence.postContent(space, title, pageContent, null, (err, data) => {
+    console.log("error in create new page:" ,err);
   });
 };

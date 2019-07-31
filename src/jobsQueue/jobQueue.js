@@ -29,27 +29,26 @@ jobQueue.process((job,done)=>{
     // class here. The Construtors object holds references to all command classes
     // then you spread the args and call it as a constructor. Then you will have
     // an executable command;
-    let command = new Constructors[job.data.name](...job.data.args)
+    let command = new Constructors[job.data.name+"Command"](...job.data.args)
     try{
         let result = command.execute();
         done(null,result);
     }catch(e){
         statusQueue.add({
             success:false,
-            id:job.id,
+            jobId:job.id,
             result:e.message,
         });
-        done(e.message);
+        done(e.message,"failed:"+e.message);
     }
-
 
     jobQueue.on('completed',
         (job,res)=>{
-            //console.log(job.id,res);
+            //            console.log("Job Queue:" ,job.id,res);
             statusQueue.add({
                 jobId:job.id,
                 success:true,
-                result:res,
+                result:res||"",
             });
         });
 });

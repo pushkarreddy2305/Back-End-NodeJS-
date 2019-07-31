@@ -10,13 +10,14 @@ import jobDb from '../models/jobs.js'
 
 var statusQueue = new Queue('status');
 statusQueue.process((job,done)=>{
+    //    console.log("Status Queue:",job.data);
 
     result = new jobDb({
         jobId:job.data.jobId,
         success:job.data.success,
         result:job.data.result,
     }).save((err)=>{
-        if(err){console.log(err)}
+        if(err){console.log("Status Queue:",err.message)}
     });
 
     done();

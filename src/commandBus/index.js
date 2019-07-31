@@ -12,8 +12,10 @@
  *
  */
 import TestCommand from './testCommand'
+import CreateConfluenceCommand from '../commands/createConfluence.js'
 
 export const Constructors = {
-    TestCommand
+    TestCommand,
+    CreateConfluenceCommand,
 }
 
