@@ -68,4 +68,8 @@ let command = {
     args:["this is an arg"],
 };
 
-
+jobQueue.add(command);
+jobQueue.add(command);
+jobQueue.add(command);
+jobQueue.add(command);
+jobQueue.add({});

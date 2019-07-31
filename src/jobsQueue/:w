@@ -6,19 +6,11 @@
  */
 
 import Queue from 'bull';
-import jobDb from '../models/jobs.js'
 
 var statusQueue = new Queue('status');
 statusQueue.process((job,done)=>{
 
-    result = new jobDb({
-        jobId:job.data.jobId,
-        success:job.data.success,
-        result:job.data.result,
-    }).save((err)=>{
-        if(err){console.log(err)}
-    });
-
+    console.log(job.id);
     done();
 })
 

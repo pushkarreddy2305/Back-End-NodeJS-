@@ -18,7 +18,7 @@
  */
 
 import Queue from 'bull';
-import StatusQueue from './StatusQueue.js';
+import {statusQueue} from './statusQueue.js';
 import {Constructors}  from '../commandBus';
 
 var jobQueue = new Queue('jobs');
@@ -31,20 +31,40 @@ jobQueue.process((job,done)=>{
     // an executable command;
     let command = new Constructors[job.data.name](...job.data.args)
     try{
-        command.execute();
-        StatusQueue.add({
-            success:true,
-            id:job.id,
-        });
-        done();
+        let result = command.execute();
+        done(null,result);
     }catch(e){
-        StatusQueue.add({
+        statusQueue.add({
             success:false,
             id:job.id,
-            error:e.message,
+            result:e.message,
         });
         done(e.message);
     }
+
+
+    jobQueue.on('completed',
+        (job,res)=>{
+            //console.log(job.id,res);
+            statusQueue.add({
+                jobId:job.id,
+                success:true,
+                result:res,
+            });
+        });
 });
+
+//jobQueue.on('global:progress',
+//    (jobid,progress)=>{
+//        console.log(jobid,"Progress",progress);
+//    });
+//jobQueue.on('global:failed',
+//    (jobid,data)=>{
+//        console.log(jobid,"failed",data);
+//    });
+//jobQueue.on('global:completed',
+//    (job,data)=>{
+//        console.log(job,data);
+//    });
 
 export {jobQueue};
