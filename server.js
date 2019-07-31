@@ -63,13 +63,4 @@ const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);
 });
 
-let command = {
-    name:'TestCommand',
-    args:["this is an arg"],
-};
 
-jobQueue.add(command);
-jobQueue.add(command);
-jobQueue.add(command);
-jobQueue.add(command);
-jobQueue.add({});
