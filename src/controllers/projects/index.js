@@ -1,6 +1,11 @@
 "use strict";
 const { project } = require("../../models");
 
+let command = {
+    name:'TestCommand',
+    args:["this is an arg"],
+};
+
 function create(name, description) {
   var newProj = new project({
     name,

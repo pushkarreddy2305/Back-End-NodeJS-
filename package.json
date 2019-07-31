@@ -9,11 +9,14 @@
     },
     "scripts": {
         "start": "node server.js",
-        "dev": "nodemon server.js"
+        "dev": "nodemon server.js --exec babel-node  -- ./server.js"
     },
     "dependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/node": "^7.5.5",
         "bitbucket": "^1.15.0",
         "body-parser": "1.18.3",
+        "bull": "^3.10.0",
         "confluence-api": "^1.4.0",
         "dotenv": "^6.1.0",
         "express": "^4.16.4",
@@ -30,7 +33,7 @@
         "@babel/plugin-proposal-class-properties": "^7.4.4",
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
         "@babel/plugin-syntax-import-meta": "^7.2.0",
-        "@babel/preset-env": "^7.4.2",
+        "@babel/preset-env": "^7.5.5",
         "@babel/preset-stage-3": "^7.0.0",
         "babel-loader": "^8.0.5",
         "nodemon": "^1.19.1",

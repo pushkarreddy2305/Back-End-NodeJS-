@@ -1,5 +1,6 @@
 module.exports = {
     target:'node',
+    entry:'./server.js',
     module:{
         rules:[
             {
@@ -7,10 +8,6 @@ module.exports = {
                 exclude:/node_modules/,
                 use: {
                     loader: 'babel-loader'
-                    options:{
-                        presets:['@babel/preset-stage-3','@babel/preset-env'],
-                        plugins:['@babel/plugin-proposal-class-properties']
-                    }
                 }
             }
         ],
