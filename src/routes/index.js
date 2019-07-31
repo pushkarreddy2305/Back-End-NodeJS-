@@ -3,6 +3,7 @@ var projectRouter = require('./project');
 var authRouter = require('./auth');
 var jiraRouter = require('./jira');
 var confluenceRouter = require('./confluence');
+var commandRouter = require('./command');
 
 module.exports = {
     userRouter,
@@ -10,4 +11,5 @@ module.exports = {
     authRouter,
     jiraRouter,
     confluenceRouter,
+    commandRouter,
 }
