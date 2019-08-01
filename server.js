@@ -57,4 +57,5 @@ const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);
 });
 
+export default server;
 
