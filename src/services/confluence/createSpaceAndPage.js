@@ -55,7 +55,7 @@ exports.createNewSpace = async (key,name,description) => {
         return result;
     }catch(e){
         console.log("AXIOS ERROR new Space:",e.message);
-        return {success:false}
+        return {status:false}
     };
 };
 
@@ -78,7 +78,7 @@ exports.createNewPage = async (space,title,pageContent) => {
         body:{
             storage:{
                 value:pageContent,
-                representation:"plain",
+                representation:"storage",
             }
         }
     }
@@ -91,7 +91,7 @@ exports.createNewPage = async (space,title,pageContent) => {
         );
         return result;
     }catch(e){
-        console.log("Axios error create new page:",e.message,e.response);
-        return {success:false};
+        console.log("Axios error create new page:",e.message,e.response.data.message);
+        return {status:false};
     }
 };

@@ -27,7 +27,7 @@ jobQueue.process(async (job,done)=>{
     let command = new Constructors[job.data.name+"Command"](...job.data.args)
     try{
         let result = await command.execute();
-        done(null,result.data);
+        done(null,result.newPageStatus.status && result.newSpaceStatus.status);
     }catch(e){
         statusQueue.add({
             success:false,
@@ -44,7 +44,7 @@ jobQueue.process(async (job,done)=>{
                 jobId:job.id,
                 result:err.message,
             });
-            console.log("job queue error",err.message);
+            console.log("job queue error",err);
         }
     );
 
@@ -53,7 +53,7 @@ jobQueue.process(async (job,done)=>{
             statusQueue.add({
                 jobId:job.id,
                 success:true,
-                result:res.id.toString()||"",
+                result:res
             });
         });
 });
