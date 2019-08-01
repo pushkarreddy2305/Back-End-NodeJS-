@@ -32,6 +32,7 @@ router.post("/", (req, res) => {
             pageContent,
         ]};
     jobQueue.add(job);
+    res.send({'started':'started'});
 });
 
 //router.put("/", (req, res) => {
