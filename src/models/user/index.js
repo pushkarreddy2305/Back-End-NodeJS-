@@ -4,7 +4,9 @@ var userSchema = new mongoose.Schema({
     ldapId:{
         type:String,
         required:true,
-    }
+    },
+    username:String,
+    password:String,
 })
 
 var userModel = mongoose.model('user',userSchema);

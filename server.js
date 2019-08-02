@@ -3,7 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require('express-session');
-var {statusQueue,jobQueue} = require('./src/jobsQueue/');
+const {statusQueue,jobQueue} = require('./src/jobsQueue/');
 import TestCommand from './src/commandBus/testCommand.js';
 
 
@@ -11,9 +11,6 @@ const {
     userRouter,
     projectRouter,
     authRouter,
-    jiraRouter,
-    confluenceRouter,
-    commandRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -55,9 +52,6 @@ app.all(/[^\/auth]/, async function (req, res, next) {
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
 app.use('/auth',authRouter);
-app.use('/jira',jiraRouter);
-app.use('/confluence',confluenceRouter);
-app.use('/command',commandRouter);
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);

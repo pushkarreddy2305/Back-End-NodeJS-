@@ -15,6 +15,7 @@ router.post('/',
                 res.json({success:false});
             }
         }).catch((err) => {
+            console.log(err);
             res.json({success:false});
         })
     }

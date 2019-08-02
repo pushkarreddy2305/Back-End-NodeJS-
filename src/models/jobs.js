@@ -17,7 +17,6 @@ var jobSchema = new mongoose.Schema({
     },
     result:{
         type:String,
-        required:true,
     },
 });
 
