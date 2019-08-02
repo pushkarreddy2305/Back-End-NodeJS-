@@ -13,6 +13,15 @@ let  project = require( '../models/project');
 const chai = require( 'chai');
 const chaiHttp = require( 'chai-http');
 let {server} = require( '../../server.js');
-let should = chai.should();
+let should = chai.should;
+let expect = chai.expect;
 
 chai.use(chaiHttp);
+
+describe("First Test", () => {
+    it("should pass whooo!", (done) => {
+        expect(2).to.equal(2)
+        done();
+    })
+});
+
