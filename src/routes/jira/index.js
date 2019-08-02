@@ -22,11 +22,13 @@ router.put('/projects/:key', (req, res, next) =>
     }).catch(err=> res.status(err.status).json(err))
 );
 
-router.delete('/projects/:key', (req, res, next) =>
+router.delete('/projects/:key', (req, res, next) =>{
     new JiraConnectorService().deleteProject(req.params.key).then((resp)=>{
         return res.json()
     }).catch(err=> res.status(err.status).json(err))
+}
 );
+
 
 router.get('/projects/:key', (req, res, next) =>
     new JiraConnectorService().getProjectByKey(req.params.key).then((resp)=>{

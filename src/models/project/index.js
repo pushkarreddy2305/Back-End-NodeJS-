@@ -1,11 +1,34 @@
 const mongoose = require("mongoose");
 
 var projectSchema = new mongoose.Schema({
-    name: String,
-    description:String,
+    id: Number,
+    name: {
+        type:String,
+        required:true,
+    },
+    description:{
+        type:String,
+        required:true,
+    },
+    jiraId:{
+        type:String,
+        default:"",
+    },
+    confluenceId:{
+        type:String,
+        default:"",
+    },
+    bitbucketId:{
+        type:String,
+        default:"",
+    },
+    jenkinsId:{
+        type:String,
+        default:"",
+    }
 })
 
-projectModel = mongoose.model('project',projectSchema);
+var project = mongoose.model('project',projectSchema);
 
-module.exports = projectModel
+module.exports = project
 

@@ -8,7 +8,10 @@ class JiraConnectorService {
     }
 
 
-    createProject(project){ return agent.post(`${this.jiraApiURl}/project`).send(project).set('Authorization',this.getBasicCredentials())}
+    createProject(project){ 
+       
+        return agent.post(`${this.jiraApiURl}/project`).send(project).set('Authorization',this.getBasicCredentials())
+    }
 
     deleteProject(key){ return agent.delete(`${this.jiraApiURl}/project/${key}`).set('Authorization',this.getBasicCredentials())}
 

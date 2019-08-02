@@ -3,13 +3,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require('express-session');
+const {statusQueue,jobQueue} = require('./src/jobsQueue/');
+import TestCommand from './src/commandBus/testCommand.js';
+
 
 const {
     userRouter,
     projectRouter,
     authRouter,
-    jiraRouter,
-    confluenceRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -25,11 +26,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
     secret:"3mpl0y3r",
 }));
-// app.use(function (req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 
 app.get('/', async (req, res) => res.sendStatus(200));
 app.use( (req,res,next) => {
@@ -50,9 +46,9 @@ app.all(/[^\/auth]/, async function (req, res, next) {
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
 app.use('/auth',authRouter);
-app.use('/jira',jiraRouter);
-app.use('/confluence',confluenceRouter);
 
 const server = app.listen(port, function () {
     console.log("API running on port ", server.address().port);
 });
+
+
