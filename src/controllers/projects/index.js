@@ -8,6 +8,10 @@ function create(name, description) {
   });
   newProj.save();
   return newProj;
+};
+
+function remove(id) {
+  return projectModel.deleteOne({ _id: id})
 }
 
 function findAll() {
@@ -47,5 +51,6 @@ module.exports = {
   find,
   findAll,
   edit,
-  findById
+  findById,
+  remove,
 };

@@ -21,7 +21,6 @@ router.get("/:search", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  //console.log(req.body);
   res.send(controller.create(req.body.name, req.body.description));
 });
 
@@ -35,5 +34,13 @@ router.put("/", (req, res) => {
       res.json({ success: false });
     });
 });
+
+router.delete("/:id", (req, res) => {
+  controller.remove(req.params.id)
+  .then(result=> res.send(result))
+  .catch(err => {
+    res.json({ success: false });
+  })
+})
 
 module.exports = router;

@@ -17,6 +17,7 @@ router.post('/projects', (req, res, next) =>
 
 router.put('/projects/:key', (req, res, next) =>
     new JiraConnectorService().updateProject(req.params.key,req.body).then((resp)=>{
+        console.log(req.body)
         return res.json(resp.body)
     }).catch(err=> res.status(err.status).json(err))
 );

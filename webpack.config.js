@@ -6,7 +6,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude:/node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: ['babel-loader', "eslint-loader"],
                     options:{
                         presets:['@babel/preset-stage-3','@babel/preset-env'],
                         plugins:['@babel/plugin-proposal-class-properties']
@@ -14,5 +14,8 @@ module.exports = {
                 }
             }
         ],
+        resolve: {
+            extensions: ['*', '.js', '.jsx']
+          },
     }
 }
