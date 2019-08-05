@@ -11,6 +11,7 @@ const {
     userRouter,
     projectRouter,
     authRouter,
+    statusRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -51,6 +52,7 @@ app.all(/[^\/auth]/, async function (req, res, next) {
 
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
+app.use('/status', statusRouter);
 app.use('/auth',authRouter);
 
 const server = app.listen(port, function () {

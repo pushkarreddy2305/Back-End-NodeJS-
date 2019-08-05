@@ -27,11 +27,12 @@ jobQueue.process(async (job,done)=>{
     let command = new Constructors[job.data.name+"Command"](...job.data.args)
     try{
         let result = await command.execute();
-        done(null,result.newPageStatus.status && result.newSpaceStatus.status);
+        console.log("result:",result);
+        done(null,result);
     }catch(e){
         statusQueue.add({
             success:false,
-            projectId:jobs.data.projectId,
+            projectId:job.data.projectId,
             jobId:job.id,
             result:e.message,
         });
