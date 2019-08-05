@@ -27,7 +27,6 @@ jobQueue.process(async (job,done)=>{
     let command = new Constructors[job.data.name+"Command"](...job.data.args)
     try{
         let result = await command.execute();
-        console.log("result:",result);
         done(null,result);
     }catch(e){
         statusQueue.add({

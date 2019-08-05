@@ -7,12 +7,13 @@
 
 import Queue from 'bull';
 import jobDb from '../models/jobs.js'
+import {project} from '../models/';
 
 var statusQueue = new Queue('status');
 
 statusQueue.process((job,done)=>{
 
-    result = new jobDb({
+    let result = new jobDb({
         jobId:job.data.jobId,
         projectId:job.data.projectId,
         success:job.data.success,
@@ -20,6 +21,14 @@ statusQueue.process((job,done)=>{
     }).save((err)=>{
         if(err){console.log("Status Queue:",err.message)}
     });
+
+    project.findById(job.data.projectId).exec(
+        (err,project) => {
+            if(err){console.log("Couldn't find project",err)};
+            project.confluence = job.data.result;
+            project.save((err)=> {if(err) console.log("Saving Project ", err)});
+        }
+    );
 
     done();
 
@@ -30,7 +39,7 @@ statusQueue.process((job,done)=>{
     );
     statusQueue.on("completed",
         (job,res) =>{
-            console.log("status queue completed",job.id,res);
+
         }
     );
     statusQueue.on("error",

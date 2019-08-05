@@ -52,7 +52,7 @@ exports.createNewSpace = async (key,name,description) => {
             data,
             axios_config
         )
-        return {link:result.data._links.webui};
+        return result.data._links;
     }catch(e){
         console.log("AXIOS ERROR new Space:",e.message);
         return {status:false}

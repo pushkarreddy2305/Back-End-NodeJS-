@@ -18,9 +18,9 @@ var projectSchema = new mongoose.Schema({
         type:String,
         default:"",
     },
-    confluenceId:{
-        type:String,
-        default:"",
+    confluence:{
+        type:mongoose.Schema.Types.Mixed,
+        default:{},
     },
     bitbucketId:{
         type:String,
