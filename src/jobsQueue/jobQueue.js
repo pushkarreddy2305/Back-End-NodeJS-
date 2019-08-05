@@ -31,6 +31,7 @@ jobQueue.process(async (job,done)=>{
     }catch(e){
         statusQueue.add({
             success:false,
+            projectId:jobs.data.projectId,
             jobId:job.id,
             result:e.message,
         });
@@ -41,6 +42,7 @@ jobQueue.process(async (job,done)=>{
         (job,err)=>{
             statusQueue.add({
                 success:false,
+                projectId:job.data.projectId,
                 jobId:job.id,
                 result:err.message,
             });
@@ -52,6 +54,7 @@ jobQueue.process(async (job,done)=>{
         (job,res)=>{
             statusQueue.add({
                 jobId:job.id,
+                projectId:job.data.projectId,
                 success:true,
                 result:res
             });

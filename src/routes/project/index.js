@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { project } = require("../../models");
 const {jobQueue} = require('../../jobsQueue');
 
 //router.get("/", (req, res) => {
@@ -21,8 +22,18 @@ const {jobQueue} = require('../../jobsQueue');
 //});
 
 router.post("/", (req, res) => {
+
     let {key,name,description,title,pageContent} = req.body;
+
+    var proj = new project({
+        key,
+        name,
+        description
+    });
+    proj.save();
+
     let job = {
+        projectId:proj._id,
         name:"CreateConfluence",
         args:[
             key,
@@ -32,7 +43,7 @@ router.post("/", (req, res) => {
             pageContent,
         ]};
     jobQueue.add(job);
-    res.send({'started':'started'});
+    res.send({'id':proj._id});
 });
 
 //router.put("/", (req, res) => {

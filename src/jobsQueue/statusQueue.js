@@ -12,9 +12,9 @@ var statusQueue = new Queue('status');
 
 statusQueue.process((job,done)=>{
 
-
     result = new jobDb({
         jobId:job.data.jobId,
+        projectId:job.data.projectId,
         success:job.data.success,
         result:job.data.result,
     }).save((err)=>{
@@ -38,11 +38,11 @@ statusQueue.process((job,done)=>{
             console.log("status queue error",err);
         }
     );
-    statusQueue.on("stalled",
-        (job) =>{
-            console.log("status queue stalled",job.id);
-        }
-    );
+    //    statusQueue.on("stalled",
+    //        (job) =>{
+    //            console.log("status queue stalled",job.id);
+    //        }
+    //    );
 })
 
 
