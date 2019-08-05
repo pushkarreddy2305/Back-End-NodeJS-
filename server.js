@@ -26,12 +26,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
     secret:"3mpl0y3r",
 }));
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
-    next();
-});
 
 app.get('/', async (req, res) => res.sendStatus(200));
 app.use( (req,res,next) => {
@@ -53,8 +47,9 @@ app.use('/user', userRouter);
 app.use('/project', projectRouter);
 app.use('/auth',authRouter);
 
-const server = app.listen(port, function () {
-    console.log("API running on port ", server.address().port);
+const server = app.listen(port,"localhost", function () {
+    console.log("API running on port ", server.address().address,server.address().port);
 });
 
+export default app;
 
