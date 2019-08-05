@@ -35,6 +35,7 @@ router.post("/", (req, res) => {
     let job = {
         projectId:proj._id,
         name:"CreateConfluence",
+        service:"confluence",
         args:[
             key,
             name,

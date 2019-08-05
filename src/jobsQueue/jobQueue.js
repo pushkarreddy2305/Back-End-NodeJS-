@@ -27,6 +27,7 @@ jobQueue.process(async (job,done)=>{
     let command = new Constructors[job.data.name+"Command"](...job.data.args)
     try{
         let result = await command.execute();
+        result.service = job.data.service;
         done(null,result);
     }catch(e){
         statusQueue.add({
@@ -56,7 +57,8 @@ jobQueue.process(async (job,done)=>{
                 jobId:job.id,
                 projectId:job.data.projectId,
                 success:true,
-                result:res
+                result:res,
+                service:job.data.service,
             });
         });
 });
