@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 var projectSchema = new mongoose.Schema({
     id: Number,
+    key:{
+        type:String,
+        required:true
+    },
     name: {
         type:String,
         required:true,
@@ -14,9 +18,9 @@ var projectSchema = new mongoose.Schema({
         type:String,
         default:"",
     },
-    confluenceId:{
-        type:String,
-        default:"",
+    confluence:{
+        type:mongoose.Schema.Types.Mixed,
+        default:{},
     },
     bitbucketId:{
         type:String,

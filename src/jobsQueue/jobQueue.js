@@ -27,10 +27,12 @@ jobQueue.process(async (job,done)=>{
     let command = new Constructors[job.data.name+"Command"](...job.data.args)
     try{
         let result = await command.execute();
-        done(null,result.newPageStatus.status && result.newSpaceStatus.status);
+        result.service = job.data.service;
+        done(null,result);
     }catch(e){
         statusQueue.add({
             success:false,
+            projectId:job.data.projectId,
             jobId:job.id,
             result:e.message,
         });
@@ -41,6 +43,7 @@ jobQueue.process(async (job,done)=>{
         (job,err)=>{
             statusQueue.add({
                 success:false,
+                projectId:job.data.projectId,
                 jobId:job.id,
                 result:err.message,
             });
@@ -52,8 +55,10 @@ jobQueue.process(async (job,done)=>{
         (job,res)=>{
             statusQueue.add({
                 jobId:job.id,
+                projectId:job.data.projectId,
                 success:true,
-                result:res
+                result:res,
+                service:job.data.service,
             });
         });
 });

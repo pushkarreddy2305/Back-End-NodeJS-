@@ -39,12 +39,9 @@ export default class CreateConfluenceCommand extends Command{
     }
 
     async execute(){
-        let newSpaceStatus = await createNewSpace(this.key,this.name,this.description);
+        let newSpace = await createNewSpace(this.key,this.name,this.description);
         let newPageStatus  = await createNewPage(this.key,this.title,this.pageContent);
-        return {
-            newSpaceStatus,
-            newPageStatus,
-        };
+        return newSpace;
     }
 }
 
