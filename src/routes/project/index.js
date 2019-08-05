@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const {jobQueue} = require('../../jobsQueue');
 
-//router.get("/", (req, res) => {
-//  controller.index().then(projects => {
-//    res.send(projects);
-//  });
-//});
-//
+router.get("/", (req, res) => {
+    res.send({projects:[
+        { id:1,desc:"project1"},
+        { id:2,desc:"project2"},
+    ]})
+});
+
 //router.get("/:id", (req, res) => {
 //  //console.log("id", req.params.id);
 //  controller.read(req.params.id).then(project => {
