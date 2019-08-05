@@ -52,7 +52,7 @@ exports.createNewSpace = async (key,name,description) => {
             data,
             axios_config
         )
-        return result;
+        return result.data._links;
     }catch(e){
         console.log("AXIOS ERROR new Space:",e.message);
         return {status:false}
@@ -89,7 +89,7 @@ exports.createNewPage = async (space,title,pageContent) => {
             data,
             axios_config
         );
-        return result;
+        return true;
     }catch(e){
         console.log("Axios error create new page:",e.message,e.response.data.message);
         return {status:false};
