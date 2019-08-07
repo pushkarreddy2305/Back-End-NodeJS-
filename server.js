@@ -37,7 +37,6 @@ app.use( (req,res,next) => {
     next()
 })
 app.all(/[^\/auth]/, async function (req, res, next) {
-
     if(req.session.loggedIn){
 
     }

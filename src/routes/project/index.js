@@ -4,20 +4,11 @@ const {jobQueue} = require('../../jobsQueue');
 const controller = require('../../controllers/projects')
 
 router.get("/", (req, res) => {
-<<<<<<< HEAD
  controller.index().then(projects => {
    res.send(projects);
  });
 });
 //
-=======
-    res.send({projects:[
-        { id:1,desc:"project1"},
-        { id:2,desc:"project2"},
-    ]})
-});
-
->>>>>>> 0db2545465911eb3f840a43859d3a621d700852d
 //router.get("/:id", (req, res) => {
 //  //console.log("id", req.params.id);
 //  controller.read(req.params.id).then(project => {
