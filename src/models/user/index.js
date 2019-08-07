@@ -9,9 +9,9 @@ var userSchema = new mongoose.Schema({
     password:String,
 })
 
-var userModel = mongoose.model('user',userSchema);
+var user = mongoose.model('user',userSchema);
 
-module.exports = userModel
+module.exports = user
 
 //userModel.find(function(err,users){
 //    if(err){console.log(err)}

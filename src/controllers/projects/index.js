@@ -13,6 +13,10 @@ function create(name, description) {
   });
   newProj.save();
   return newProj;
+};
+
+function remove(id) {
+  return project.deleteOne({ _id: id})
 }
 
 function index() {
@@ -65,4 +69,5 @@ module.exports = {
     read,
     update,
     del,
+    remove
 };
