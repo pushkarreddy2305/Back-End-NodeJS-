@@ -11,16 +11,18 @@ var jobSchema = new mongoose.Schema({
         type:Number,
         required:true,
     },
+    projectId:{
+        type:String,
+        required:true
+    },
     success:{
         type:Boolean,
         required:true,
     },
-    result:{
-        type:String,
-    },
+    result:Object,
 });
 
 var job = mongoose.model('job',jobSchema);
 
-export default job;
+module.exports = job;
 

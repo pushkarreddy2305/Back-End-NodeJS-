@@ -1,13 +1,23 @@
 const router = require("express").Router();
+const { project } = require("../../models");
 const {jobQueue} = require('../../jobsQueue');
 const controller = require('../../controllers/projects')
 
 router.get("/", (req, res) => {
+<<<<<<< HEAD
  controller.index().then(projects => {
    res.send(projects);
  });
 });
 //
+=======
+    res.send({projects:[
+        { id:1,desc:"project1"},
+        { id:2,desc:"project2"},
+    ]})
+});
+
+>>>>>>> 0db2545465911eb3f840a43859d3a621d700852d
 //router.get("/:id", (req, res) => {
 //  //console.log("id", req.params.id);
 //  controller.read(req.params.id).then(project => {
@@ -22,9 +32,20 @@ router.get("/", (req, res) => {
 //});
 
 router.post("/", (req, res) => {
+
     let {key,name,description,title,pageContent} = req.body;
+
+    var proj = new project({
+        key,
+        name,
+        description
+    });
+    proj.save();
+
     let job = {
+        projectId:proj._id,
         name:"CreateConfluence",
+        service:"confluence",
         args:[
             key,
             name,
@@ -33,7 +54,7 @@ router.post("/", (req, res) => {
             pageContent,
         ]};
     jobQueue.add(job);
-    res.send({'started':'started'});
+    res.send({'id':proj._id});
 });
 
 router.put("/", (req, res) => {
