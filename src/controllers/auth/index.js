@@ -1,9 +1,9 @@
-const {user} = require("../../models");
+const {User} = require("../../models");
 
 function authenticate(username,password){
     let re = new RegExp(username,'i');
-    return user.findOne({
-        username:re,
+    return User.findOne({
+        Username:re,
         password,
     })
 }

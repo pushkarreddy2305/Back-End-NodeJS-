@@ -12,6 +12,8 @@ router.get('/',
         userController.findAll()
             .then(users => {
                 res.send(users)
+            }).catch(e => {
+                res.send(e)
             })
     }
 );
