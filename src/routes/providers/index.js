@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Provider,User } = require("../../models");
+const { Provider } = require("../../models");
 
 
 //index
@@ -27,6 +27,7 @@ router.get('/:label',(req,res) => {
 })
 
 router.post('/' , (req,res) => {
+    console.log(req.body)
     let {label,location,credentials,type} = req.body;
     console.log(label,location,credentials,type);
     return new Provider({
@@ -39,15 +40,15 @@ router.post('/' , (req,res) => {
         .catch(err => res.send(err))
 })
 
-router.put('/:label' , (req,res) => {
-    let label = req.params.label;
-    let {location,credentials,type} = req.body;
-    let newLabel = req.body.label;
+router.put('/:id' , (req,res) => {
+    let _id = req.params.id;
+    let {label,location,credentials,type} = req.body;
+    // let newLabel = req.body.label;
     console.log(label,location,credentials,type);
     return Provider.updateOne(
-        {label},
+        {_id},
         {
-            label:newLabel,
+            label,
             location,
             credentials,
             type
@@ -57,9 +58,10 @@ router.put('/:label' , (req,res) => {
 })
 
 router.delete('/:label',(req,res) => {
+    console.log(req.params.label)
     var regex = new RegExp(req.params.label,'i');
-    return Provider.deleteOne({label:regex}).exec()
-        .then(prov => res.send('complete'))
+    return Provider.deleteOne({_id:req.params.label}).exec()
+        .then(prov => res.send(prov))
         .catch(err => res.send('error'));
 })
 

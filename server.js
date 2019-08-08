@@ -3,7 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require('express-session');
-const models = require('../data-client/src/client.js');
+// const models = require('../data-client/src/client.js');
 const {statusQueue,jobQueue} = require('./src/jobsQueue/');
 import TestCommand from './src/commandBus/testCommand.js';
 

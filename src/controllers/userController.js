@@ -3,8 +3,8 @@ const { User } = require("../models");
 const query = require("mongoose").query;
 
 function create(username,groups){
-    var newUser = new UserModel({
-        Username,
+    var newUser = new User({
+        username,
         groups,
     });
     newUser.save();

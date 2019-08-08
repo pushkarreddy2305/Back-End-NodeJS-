@@ -3,10 +3,12 @@ const controller = require('../../controllers/auth');
 
 router.post('/',
     (req,res) => {
+        console.log(req.body)
         controller.authenticate(
             req.body.username,
             req.body.password
         ).then(user =>{
+            console.log(user)
             if(user.username != undefined ){
                 req.session.loggedIn = true;
                 req.session.user = user;

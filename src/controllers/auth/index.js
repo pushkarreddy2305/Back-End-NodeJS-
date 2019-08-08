@@ -3,7 +3,7 @@ const {User} = require("../../models");
 function authenticate(username,password){
     let re = new RegExp(username,'i');
     return User.findOne({
-        Username:re,
+        username,
         password,
     })
 }
