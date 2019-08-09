@@ -38,6 +38,7 @@ router.post('/' , (req,res) => {
 })
 
 router.put('/:id' , async (req,res) => {
+    console.log(req.body)
     let _id = req.params.id;
     let {label,location,credentials,type} = req.body;
     let original;
@@ -56,6 +57,7 @@ router.put('/:id' , async (req,res) => {
     return Provider.updateOne({_id},newData)
         .exec()
         .then(prov => {
+            console.log(prov)
             Provider.findById(_id)
                 .exec(
                     (err,provider) => {
