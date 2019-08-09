@@ -101,7 +101,7 @@ const templateModel = new Schema({
       templateName: {type: String},
       templateType: {
         type: Schema.Types.ObjectId,
-        ref: 'templateType'      },
+        ref: 'templateType'},
       templateLocation: {
         type: String
       }
