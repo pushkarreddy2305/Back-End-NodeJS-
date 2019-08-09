@@ -40,7 +40,6 @@ describe("Test Creation of System",
                     .end((err,res) => {
                         expect(err).to.be.null;
                         expect(res).to.have.status(200);
-                        console.log(Object.keys(res.body));
                         expect(res.body).to.have.property('label',"testProvider")
                         expect(res.body).to.have.property('location',"http://testlocation.com")
                         expect(res.body).to.have.property('type',"source control")
@@ -87,7 +86,6 @@ describe("Test get system(or provider) with label",
                     .end((err,res) => {
                         expect(err).to.be.null;
                         expect(res).to.have.status(200);
-                        console.log(Object.keys(res.body));
                         expect(res.body).to.have.property('label',"testProvider")
                         expect(res.body).to.have.property('location',"http://testlocation.com")
                         expect(res.body).to.have.property('type',"source control")
@@ -142,7 +140,6 @@ describe("Test update system(or provider) with label",
                     .end((err,res) => {
                         expect(err).to.be.null;
                         expect(res).to.have.status(200);
-                        console.log(Object.keys(res.body));
                         expect(res.body).to.have.property('label',"newLabel")
                         expect(res.body).to.have.property('location',"http://testlocation2.com")
                         expect(res.body).to.have.property('type',"documentation")
@@ -189,7 +186,6 @@ describe("Test delete system(or provider) with label",
                     .end((err,res) => {
                         expect(err).to.be.null;
                         expect(res).to.have.status(200);
-                        console.log(Object.keys(res.body));
                         expect(res.body).to.have.property('success',true)
                         done();
                     })
