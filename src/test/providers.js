@@ -156,6 +156,31 @@ describe("Test update system(or provider) with id",
             }
         )
 
+        it("Should update a system(or provider) with id and only non empty fields",
+            (done) => {
+                chai.request(app)
+                    .put('/provider/'+testProvider._id)
+                    .send({
+                        label:"",
+                        location:"",
+                        type:"documentation",
+                        credentials:{
+                            username:"newusername2",
+                            password:"newpassword2",
+                        }
+                    })
+                    .end((err,res) => {
+                        expect(err).to.be.null;
+                        expect(res).to.have.status(200);
+                        expect(res.body).to.have.property('label',"newLabel")
+                        expect(res.body).to.have.property('location',"http://testlocation2.com")
+                        expect(res.body).to.have.property('type',"documentation")
+                        expect(res.body.credentials).to.have.property('username',"newusername2")
+                        expect(res.body.credentials).to.have.property('password',"newpassword2");
+                        done();
+                    })
+            }
+        )
         after((done) => {
             Provider.deleteMany({_id:testProvider._id},
                 (err,res) => done()
