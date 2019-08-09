@@ -1,18 +1,18 @@
 const router = require("express").Router();
-const { project } = require("../../models");
+const { Project } = require("../../models");
 const {jobQueue} = require('../../jobsQueue');
 const controller = require('../../controllers/projects')
 
 router.get("/", (req, res) => {
- controller.index().then(projects => {
-   res.send(projects);
+ controller.index().then(Projects => {
+   res.send(Projects);
  });
 });
 //
 //router.get("/:id", (req, res) => {
 //  //console.log("id", req.params.id);
-//  controller.read(req.params.id).then(project => {
-//    res.send(project);
+//  controller.read(req.params.id).then(Project => {
+//    res.send(Project);
 //  });
 //});
 //
@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
 
     let {key,name,description,title,pageContent} = req.body;
 
-    var proj = new project({
+    var proj = new Project({
         key,
         name,
         description
@@ -34,7 +34,7 @@ router.post("/", (req, res) => {
     proj.save();
 
     let job = {
-        projectId:proj._id,
+        ProjectId:proj._id,
         name:"CreateConfluence",
         service:"confluence",
         args:[
@@ -53,7 +53,7 @@ router.put("/", (req, res) => {
  let { id, name, description } = req.body;
  controller
    .update(id, name, description)
-   .then(project => res.json({ success: true, project }))
+   .then(Project => res.json({ success: true, Project }))
    .catch(err => {
        res.json({
            success: false,

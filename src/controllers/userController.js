@@ -1,9 +1,9 @@
 'use strict';
-const { user } = require("../models");
+const { User } = require("../models");
 const query = require("mongoose").query;
 
 function create(username,groups){
-    var newUser = new userModel({
+    var newUser = new User({
         username,
         groups,
     });
@@ -14,7 +14,7 @@ function create(username,groups){
 function getTest(username) {
     try {
         return {
-            'message': 'Logged in as: ' + username
+            'message': 'Logged in as: ' + Username
         };
     } catch (err) {
         return {
@@ -25,11 +25,15 @@ function getTest(username) {
 
 function find(search){
     var regex = new RegExp(search,'i');
-    return user.find({username:regex}).exec();
+    return User.find({username:regex}).exec();
 }
 
 function findAll(){
-    return user.find().exec();
+    try{
+        return User.find().exec();
+    }catch(e){
+        console.log("Woah",e.message)
+    }
 }
 
 module.exports = {

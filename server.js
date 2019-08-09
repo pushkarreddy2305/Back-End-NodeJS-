@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require('express-session');
+// const models = require('../data-client/src/client.js');
 const {statusQueue,jobQueue} = require('./src/jobsQueue/');
 import TestCommand from './src/commandBus/testCommand.js';
 
@@ -12,6 +13,7 @@ const {
     projectRouter,
     authRouter,
     statusRouter,
+    providerRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -37,7 +39,6 @@ app.use( (req,res,next) => {
     next()
 })
 app.all(/[^\/auth]/, async function (req, res, next) {
-
     if(req.session.loggedIn){
 
     }
@@ -48,10 +49,12 @@ app.use('/user', userRouter);
 app.use('/project', projectRouter);
 app.use('/status', statusRouter);
 app.use('/auth',authRouter);
+app.use('/provider',providerRouter);
 
 const server = app.listen(port,"localhost", function () {
     console.log("API running on port ", server.address().address,server.address().port);
 });
+
 
 export default app;
 

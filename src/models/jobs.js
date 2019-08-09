@@ -6,8 +6,8 @@
  */
 import mongoose from "mongoose";
 
-var jobSchema = new mongoose.Schema({
-    jobId:{
+var statusSchema = new mongoose.Schema({
+    statusId:{
         type:Number,
         required:true,
     },
@@ -22,7 +22,7 @@ var jobSchema = new mongoose.Schema({
     result:Object,
 });
 
-var job = mongoose.model('job',jobSchema);
+var status = mongoose.model('status',statusSchema);
 
-module.exports = job;
+module.exports = status;
 

@@ -1,5 +1,5 @@
 "use strict";
-const { project } = require("../../models");
+const { Project } = require("../../models");
 
 let command = {
     name:'TestCommand',
@@ -7,7 +7,7 @@ let command = {
 };
 
 function create(name, description) {
-  var newProj = new project({
+  var newProj = new Project({
     name,
     description
   });
@@ -16,16 +16,16 @@ function create(name, description) {
 };
 
 function remove(id) {
-  return project.deleteOne({ _id: id})
+  return Project.deleteOne({ _id: id})
 }
 
 function index() {
-  return project.find().exec();
+  return Project.find().exec();
 }
 
 function search(search) {
   var regex = new RegExp(search, "i");
-  return project
+  return Project
     .find({
       $or: [{ description: regex }, { name: regex }]
     })
@@ -33,11 +33,11 @@ function search(search) {
 }
 
 function read(id) {
-  return project.findOne({ _id: id }).exec();
+  return Project.findOne({ _id: id }).exec();
 }
 
 async function update(id, name, description) {
-  return await project
+  return await Project
     .findOne({ _id: id })
     .exec()
     .then(proj => {
@@ -52,7 +52,7 @@ async function update(id, name, description) {
 }
 
 async function del(id){
-    return await project
+    return await Project
         .deleteOne({_id:id})
         .then(result=>{
             if(result.deletedCount > 0){
