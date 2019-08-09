@@ -58,8 +58,9 @@ describe("Test Creation of System",
     }
 );
 
-describe("Test get system(or provider) with label",
+describe("Test get system(or provider) with id",
     () => {
+        let testProvider;
         before((done) => {
             new Provider(
                 {
@@ -73,6 +74,8 @@ describe("Test get system(or provider) with label",
                 },
             ).save(
                 (err,res)=>{
+                    if(err) throw err;
+                    testProvider = res;
                     done()
                 }
             );
@@ -81,7 +84,7 @@ describe("Test get system(or provider) with label",
         it("Should find a system(or provider) with the label testProvider",
             (done) => {
                 chai.request(app)
-                    .get('/provider/testProvider')
+                    .get('/provider/'+ testProvider._id)
                     .send()
                     .end((err,res) => {
                         expect(err).to.be.null;
@@ -104,8 +107,9 @@ describe("Test get system(or provider) with label",
     }
 );
 
-describe("Test update system(or provider) with label",
+describe("Test update system(or provider) with id",
     () => {
+        let testProvider;
         before((done) => {
             new Provider(
                 {
@@ -119,15 +123,17 @@ describe("Test update system(or provider) with label",
                 }
             ).save(
                 (err,res)=>{
+                    testProvider = res;
                     done()
                 }
             );
         });
 
-        it("Should find a system(or provider) with the label testProvider",
+
+        it("Should update a system(or provider) with id",
             (done) => {
                 chai.request(app)
-                    .put('/provider/testProvider')
+                    .put('/provider/'+testProvider._id)
                     .send({
                         label:"newLabel",
                         location:"http://testlocation2.com",
@@ -150,16 +156,42 @@ describe("Test update system(or provider) with label",
             }
         )
 
+        it("Should update a system(or provider) with id and only non empty fields",
+            (done) => {
+                chai.request(app)
+                    .put('/provider/'+testProvider._id)
+                    .send({
+                        label:"",
+                        location:"",
+                        type:"documentation",
+                        credentials:{
+                            username:"newusername2",
+                            password:"newpassword2",
+                        }
+                    })
+                    .end((err,res) => {
+                        expect(err).to.be.null;
+                        expect(res).to.have.status(200);
+                        expect(res.body).to.have.property('label',"newLabel")
+                        expect(res.body).to.have.property('location',"http://testlocation2.com")
+                        expect(res.body).to.have.property('type',"documentation")
+                        expect(res.body.credentials).to.have.property('username',"newusername2")
+                        expect(res.body.credentials).to.have.property('password',"newpassword2");
+                        done();
+                    })
+            }
+        )
         after((done) => {
-            Provider.deleteMany({label:"newLabel"},
+            Provider.deleteMany({_id:testProvider._id},
                 (err,res) => done()
             )
         })
     }
 );
 
-describe("Test delete system(or provider) with label",
+describe("Test delete system(or provider) with id",
     () => {
+        let testProvider;
         before((done) => {
             new Provider(
                 {
@@ -173,15 +205,16 @@ describe("Test delete system(or provider) with label",
                 },
             ).save(
                 (err,res)=>{
+                    testProvider = res;
                     done()
                 }
             );
         });
 
-        it("Should delete a system(or provider) with the label testProvider",
+        it("Should delete a system(or provider) with id",
             (done) => {
                 chai.request(app)
-                    .delete('/provider/testProvider')
+                    .delete('/provider/'+testProvider._id)
                     .send()
                     .end((err,res) => {
                         expect(err).to.be.null;
