@@ -21,7 +21,7 @@ router.get('/',(req,res) => {
 
 router.get('/:label',(req,res) => {
     var regex = new RegExp(req.params.label,'i');
-    return Provider.find({label:regex}).exec()
+    return Provider.findOne({label:regex}).exec()
         .then(prov => res.send(prov))
         .catch(err=>res.send(err));
 })
@@ -52,15 +52,20 @@ router.put('/:label' , (req,res) => {
             credentials,
             type
         }).exec()
-        .then(prov => res.send(prov))
+        .then(prov => {
+            Provider.findOne({label:newLabel})
+                .exec()
+                .then(prov => res.send(prov))
+                .catch(err => res.send(err));
+        })
         .catch(err => res.send(err))
 })
 
 router.delete('/:label',(req,res) => {
     var regex = new RegExp(req.params.label,'i');
     return Provider.deleteOne({label:regex}).exec()
-        .then(prov => res.send('complete'))
-        .catch(err => res.send('error'));
+        .then(prov => res.send({success:true}))
+        .catch(err => res.send({success:false,err}));
 })
 
 
