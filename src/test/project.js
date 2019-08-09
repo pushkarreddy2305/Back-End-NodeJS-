@@ -8,7 +8,6 @@
 process.env.NODE_ENV = 'test';
 
 const  mongoose = require( 'mongoose');
-let  project = require( '../models/project');
 
 const chai = require( 'chai');
 const chaiHttp = require( 'chai-http');
@@ -18,27 +17,4 @@ let expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe("First Test", () => {
-    it("should pass whooo!", (done) => {
-        expect(2).to.equal(2)
-        done();
-    })
-    chai.request(app)
-        .get('/project')
-        .end((err,res) =>{
-            console.log(err,res)
-        });
-});
-
-describe("First Test", () => {
-    it("should pass whooo!", (done) => {
-        expect(2).to.equal(2)
-        done();
-    })
-    chai.request(app)
-        .get('/project')
-        .end((err,res) =>{
-            console.log(err,res)
-        });
-});
 
