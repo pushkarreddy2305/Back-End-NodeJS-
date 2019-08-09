@@ -4,11 +4,10 @@ const { Provider } = require("../../models");
 
 //index
 router.get('/',(req,res) => {
-
+    // !! this gives us an unhandled promise rejection warning
     try{
     Provider.find({},
             (err,provider)=>{
-                console.log("whaddup");
                 if(err) res.send(err);
                 res.send(provider)
             }).exec().then((prov) => res.send(prov))
@@ -57,10 +56,10 @@ router.put('/:id' , (req,res) => {
         .catch(err => res.send(err))
 })
 
-router.delete('/:label',(req,res) => {
-    console.log(req.params.label)
+router.delete('/:id',(req,res) => {
+    const _id = req.params.id
     var regex = new RegExp(req.params.label,'i');
-    return Provider.deleteOne({_id:req.params.label}).exec()
+    return Provider.deleteOne({_id}).exec()
         .then(prov => res.send(prov))
         .catch(err => res.send('error'));
 })
