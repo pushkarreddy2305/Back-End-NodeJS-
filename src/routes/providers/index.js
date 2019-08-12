@@ -26,9 +26,7 @@ router.get('/:id',(req,res) => {
 })
 
 router.post('/' , (req,res) => {
-    console.log(req.body)
     let {label,location,credentials,type} = req.body;
-    console.log(label,location,credentials,type);
     return new Provider({
         label,
         location,

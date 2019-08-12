@@ -14,6 +14,7 @@ const {
     authRouter,
     statusRouter,
     providerRouter,
+    templateRouter
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -50,6 +51,7 @@ app.use('/project', projectRouter);
 app.use('/status', statusRouter);
 app.use('/auth',authRouter);
 app.use('/provider',providerRouter);
+app.use('/template', templateRouter)
 
 const server = app.listen(port,"localhost", function () {
     console.log("API running on port ", server.address().address,server.address().port);

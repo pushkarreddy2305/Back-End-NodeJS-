@@ -3,6 +3,7 @@ var projectRouter = require('./project');
 var authRouter = require('./auth');
 var statusRouter = require('./project/status.js');
 var providerRouter = require('./providers');
+var templateRouter = require('./templates')
 
 module.exports = {
     userRouter,
@@ -10,4 +11,5 @@ module.exports = {
     authRouter,
     statusRouter,
     providerRouter,
+    templateRouter
 }

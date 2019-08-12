@@ -101,7 +101,9 @@ const templateModel = new Schema({
       templateName: {type: String},
       templateType: {
         type: Schema.Types.ObjectId,
-        ref: 'templateType'
+        ref: 'templateType'},
+      templateLocation: {
+        type: String
       }
 })
 
@@ -137,8 +139,8 @@ dataClient.PermissionLevel = mongoose.model('permissionLevel',permissionLevelMod
 dataClient.Project = mongoose.model('project',projectModel);
 dataClient.Component = mongoose.model('component',componentModel);
 dataClient.Job = mongoose.model('job',jobModel);
-dataClient.Template = mongoose.model('template',templateModel);
-dataClient.TemplateType = mongoose.model('templateType',templateModel);
+dataClient.Template = mongoose.model('templates',templateModel);
+dataClient.TemplateType = mongoose.model('templateType',templateType);
 dataClient.Provider = mongoose.model('provider',providerModel);
 module.exports = dataClient;
 
