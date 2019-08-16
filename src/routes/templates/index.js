@@ -13,14 +13,26 @@ router.get('/', (req, res) =>{
     })
 })
 
+router.get('/templatetype/:id', async(req, res)=>{
+    var id = req.params.id;
+    await TemplateType.findOne({_id: id})
+    .exec()
+    .then(result => {
+        res.send(result);
+    })
+
+})
+
 
 router.post('/', async (req, res) =>{
+    console.log(req.body);
     const { name, location, type } = req.body;
+    console.log(type);
     let id; 
     await TemplateType.findOne({typeName: type})
         .exec()
-        .then(type=> id = type._id)
-        .catch(err => res.send('cannot find file type'))
+        .then(type=>id = type._id)
+        .catch(err => res.send('cannot find file type' + err))
             return new Template({
                 templateName: name,
                 templateLocation: location,
