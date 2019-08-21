@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test';
 
 const  mongoose = require( 'mongoose');
-import {Provider} from "../models/";
+import {Provider,SystemType} from "../models/";
 
 const chai = require( 'chai');
 const chaiHttp = require( 'chai-http');
@@ -15,6 +15,7 @@ chai.use(chaiHttp);
 
 describe("Test Creation of System",
     () => {
+        let systemType;
         before((done) => {
             Provider.deleteMany(
                 {label:"testProvider"},
@@ -22,6 +23,12 @@ describe("Test Creation of System",
                     done();
                 }
             )
+            SystemType.findOne({})
+                .exec()
+                .then( res =>{
+                    systemType = res
+                })
+                .catch(err => console.log("ERROR:/src/test/providers line 29", err))
         });
 
         it("Should Create a system(or provider) with the label testProvider",
@@ -36,6 +43,8 @@ describe("Test Creation of System",
                             password:"p455w0rd",
                         },
                         type:"source control",
+                        systemType:systemType._id,
+
                     })
                     .end((err,res) => {
                         expect(err).to.be.null;
@@ -52,7 +61,9 @@ describe("Test Creation of System",
 
         after((done) => {
             Provider.deleteMany({label:"testProvider"},
-                (err,res) => done()
+                (err,res) => {
+                    done()
+                }
             )
         })
     }
@@ -62,6 +73,7 @@ describe("Test get system(or provider) with id",
     () => {
         let testProvider;
         before((done) => {
+
             new Provider(
                 {
                     label:"testProvider",
@@ -71,6 +83,7 @@ describe("Test get system(or provider) with id",
                         password:"p455w0rd",
                     },
                     type:"source control",
+
                 },
             ).save(
                 (err,res)=>{

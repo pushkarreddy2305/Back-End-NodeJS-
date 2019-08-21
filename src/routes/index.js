@@ -4,6 +4,8 @@ var authRouter = require('./auth');
 var statusRouter = require('./project/status.js');
 var providerRouter = require('./providers');
 var templateRouter = require('./templates')
+var systemTypesRouter = require('./systemTypes');
+var refreshProjectRouter = require('./project/refresh.js');
 
 module.exports = {
     userRouter,
@@ -11,5 +13,7 @@ module.exports = {
     authRouter,
     statusRouter,
     providerRouter,
-    templateRouter
+    templateRouter,
+    systemTypesRouter,
+    refreshProjectRouter,
 }

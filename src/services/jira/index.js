@@ -2,14 +2,16 @@ const agent = require( 'superagent');
 const config = require('../../config.js');
 
 class JiraConnectorService {
-    constructor(){
+    constructor(username,password){
 
         this.jiraApiURl=config.jiraURL;
+        this.username = username;
+        this.password = password;
     }
 
 
-    createProject(project){ 
-       
+    createProject(project){
+
         return agent.post(`${this.jiraApiURl}/project`).send(project).set('Authorization',this.getBasicCredentials())
     }
 
@@ -23,7 +25,7 @@ class JiraConnectorService {
 
 
     getBasicCredentials(){
-        const enCodedToken = Buffer.from("Sharath:Wilmington@1995").toString('base64')
+        const enCodedToken = Buffer.from(`${this.username}:${this.password}`).toString('base64')
         return `Basic ${enCodedToken}`
     }
 

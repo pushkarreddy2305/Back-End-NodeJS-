@@ -14,7 +14,9 @@ const {
     authRouter,
     statusRouter,
     providerRouter,
-    templateRouter
+    templateRouter,
+    systemTypesRouter,
+    refreshProjectRouter,
 } = require('./src/routes');
 
 const {connect} = require('./src/db');
@@ -48,10 +50,12 @@ app.all(/[^\/auth]/, async function (req, res, next) {
 
 app.use('/user', userRouter);
 app.use('/project', projectRouter);
+app.use('/refresh', refreshProjectRouter);
 app.use('/status', statusRouter);
 app.use('/auth',authRouter);
 app.use('/provider',providerRouter);
 app.use('/template', templateRouter)
+app.use('/systemtype',systemTypesRouter);
 
 const server = app.listen(port,"localhost", function () {
     console.log("API running on port ", server.address().address,server.address().port);

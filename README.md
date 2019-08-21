@@ -53,6 +53,20 @@ Employer's Holding Rest API
 - POST `/project` send with name and description.
 - PUT `/project` send with id(the document id, in mongo \_id), name(this is the new name), description(this is the new description)
 
+## Templates
+- GET `/template` will return all templates
+- GET `/template/:id` will return template identified by :id
+- POST `/template/` will create a template with {name,location,type} parameters
+- PUT `/template/:id` will update template identified by :id with {name,location,type} parameters
+- DELETE `/template/:id` will delete template identified by :id
+
+## Providers/System
+- GET `/provider` will return all provider/systems
+- GET `/provider/:id` will return provider/system identified by :id
+- POST `/proivder/` will create a provider/system with {label,location,credentials(this is provider specific),systemType,type}
+- PUT `/provider/:id` will update provider/system identified by :id takes {label,location,credentials(this is provider specific),systemType,type}
+- DELETE `provider/:id` will delete provider/system identified by :id
+
 ## Jira
 
 - GET `/jira/projects` returns a list of all projects

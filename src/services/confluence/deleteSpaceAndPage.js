@@ -1,21 +1,19 @@
 const Confluence = require("confluence-api");
 const request = require("request");
 
-const config = require("../../config");
 
-exports.deleteSpace = (req, res, next) => {
-  const { spaceKey } = req.body;
+exports.deleteSpace = (key,username,password) => {
 
   const options = {
     method: "DELETE",
-    url: `https://rangers.atlassian.net/wiki/rest/api/space/${spaceKey}`,
-    auth: { username: config.username, password: config.password }
+    url: `https://rangers.atlassian.net/wiki/rest/api/space/${key}`,
+    auth: { username: username, password: password }
   };
 
   request(options, function(error, response, body) {
     if (error) throw new Error(error);
 
-    return res.send(body);
+    return body;
   });
 };
 

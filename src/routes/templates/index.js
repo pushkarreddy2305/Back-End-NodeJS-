@@ -13,10 +13,19 @@ router.get('/', (req, res) =>{
     })
 })
 
+router.get("/templatetype/:id", async (req, res) => {
+  var id = req.params.id;
+  await TemplateType.findOne({ _id: id })
+    .exec()
+    .then(result => {
+      res.send(result);
+    });
+});
+
 
 router.post('/', async (req, res) =>{
     const { name, location, type } = req.body;
-    let id; 
+    let id;
     await TemplateType.findOne({typeName: type})
         .exec()
         .then(type=> id = type._id)
@@ -35,7 +44,7 @@ router.post('/', async (req, res) =>{
 router.put('/:id', async (req, res)=>{
     const _id = req.params.id
     const { name, location, type } = req.body
-    let typeId; 
+    let typeId;
     await TemplateType.findOne({typeName: type})
         .exec()
         .then(type=> typeId = type._id)
