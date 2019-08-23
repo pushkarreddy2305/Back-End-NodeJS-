@@ -51,10 +51,17 @@ router.post("/", (req, res) => {
     description,
     refreshProtect,
   });
+
+  console.log(proj);
   proj.save(
     (err,project) => {
-      if(err) res.status(500).send(err);
+      if(err) 
+      { 
+        console.log(err); 
+        res.status(500).send(err);
+      }else{
       res.send(project)
+      }
     });
 });
 

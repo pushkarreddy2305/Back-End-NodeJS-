@@ -6,7 +6,7 @@ const session = require('express-session');
 // const models = require('../data-client/src/client.js');
 const {statusQueue,jobQueue} = require('./src/jobsQueue/');
 import TestCommand from './src/commandBus/testCommand.js';
-
+const cors = require('cors')
 
 const {
     userRouter,
@@ -32,10 +32,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
     secret:"3mpl0y3r",
 }));
-
+app.use(cors());
 app.get('/', async (req, res) => res.sendStatus(200));
 app.use( (req,res,next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header("Access-Control-Allow-Origin", "http://localhost:6001");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Headers", "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
