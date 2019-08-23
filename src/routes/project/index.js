@@ -58,10 +58,14 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/", (req, res) => {
-  let { id, name, description, refreshProtect} = req.body;
-  controller
-    .update(id, name, description)
+router.put("/:id", (req, res) => {
+  let { name, description, refreshProtect} = req.body;
+  let project = req.project
+  project.name = name || project.name;
+  project.description = description || project.description;
+  project.refreshProtect = refreshProtect ;
+
+  project.save()
     .then(Project => res.json({ success: true, Project }))
     .catch(err => {
       res.json({
